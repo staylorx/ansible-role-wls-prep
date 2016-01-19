@@ -35,3 +35,10 @@ Install with
 ## License
 
 ## Author Information
+
+## Extra
+
+Standing on the back of giants thing here. I learned lots from the following folks and their code:
+
+ - https://github.com/cvezalis
+ - https://github.com/biemond
