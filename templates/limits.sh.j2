@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $USER = "{{ oracle_user }}" ]; then
+if [ $USER = "{{ oracle_user_name }}" ]; then
   if [ $SHELL = "/bin/ksh" ]; then
     ulimit -p {{ hard_nproc }}
     ulimit -n {{ hard_no_file }}
