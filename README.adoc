@@ -12,11 +12,25 @@ Linux, RHEL or CentOS 7 preferred but 6 supported.
 
 None.
 
+== Example requirements.yml
+
+----
+  - src: https://github.com/staylorx/ansible-role-wlsprep
+    version: master
+    name: staylorx.wlsprep
+----
+
+Install with
+
+  sudo ansible-galaxy install -r requirements.yml
+
 ## Example Playbook
 
-    - hosts: weblogic
-      roles:
-        - { role: staylorx.wlsprep }
+----
+  - hosts: servers
+    roles:
+    - { role: staylorx.wlsprep }
+----
 
 ## License
 
