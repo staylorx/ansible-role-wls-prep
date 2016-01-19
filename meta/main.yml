@@ -1,0 +1,15 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: staylorx
+  description: WLS O/S Prepare
+  license: "license (BSD, MIT)"
+  min_ansible_version: 1.4
+  platforms:
+  - name: EL
+    versions:
+    - all
+  categories:
+    - development
+    - system
