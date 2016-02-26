@@ -3,9 +3,8 @@
 # ==> Configure Linux
 
 - name: Install required libraries
-  yum: name={{ item }} state=present
-  with_items: packages_list
-  become: yes
+  yum: name="{{ item }}" state=present
+  with_items: package_list
 
 - name: Check SELinux status
   shell: selinuxenabled && echo enabled || echo disabled
@@ -13,50 +12,39 @@
 
 - name: Disable SELinux
   selinux: state=disabled
-  become: yes
   when: selinux_status.stdout != 'disabled'
 
 - name: Disable firewalld (firewalld)
   service: name=firewalld state=stopped enabled=no
-  become: yes
   when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "7") or
         (ansible_distribution == "RedHat" and ansible_distribution_major_version == "7")
 
 - name: Disable iptables (iptables)
   service: name=iptables state=stopped enabled=no
-  become: yes
   when: (ansible_distribution == "CentOS" and ansible_distribution_major_version == "6") or
         (ansible_distribution == "RedHat" and ansible_distribution_major_version == "6")
 
 - name: Change kernel parameters
   sysctl: name="{{ item.key }}" value="{{ item.value }}" state=present
-  become: yes
   with_dict: kernel_params
 
 - name: Create groups
   group: name={{ oracle_group_name }} state=present
-  become: yes
 
 - name: Create user
   user: name={{ oracle_user_name }} group={{ oracle_group_name }} state=present
-  become: yes
 
 - name: Add soft limit number of open files
   lineinfile: dest=/etc/security/limits.conf line='{{ oracle_user_name }} soft  nofile  {{ soft_no_file }}' state=present
-  become: yes
 
 - name: Add hard limit for number of open files
   lineinfile: dest=/etc/security/limits.conf line='{{ oracle_user_name }} hard  nofile  {{ hard_no_file }}' state=present
-  become: yes
 
 - name: Add soft limit for number of processes
   lineinfile: dest=/etc/security/limits.conf line='{{ oracle_user_name }} soft  nproc   {{ soft_nproc }}' state=present
-  become: yes
 
 - name: Add hard limit for number of processes
   lineinfile: dest=/etc/security/limits.conf line='{{ oracle_user_name }} hard  nproc   {{ hard_nproc }}' state=present
-  become: yes
 
 - name: Create a shell profile with file and process limits for oracle user
   template: src=limits.sh.j2 dest=/etc/profile.d/limits.sh owner=root mode=0644
-  become: yes
