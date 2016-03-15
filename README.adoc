@@ -15,7 +15,7 @@ None.
 == Example requirements.yml
 
 ----
-  - src: https://github.com/staylorx/ansible-role-wlsprep
+  - src: https://github.com/staylorx/ansible-role-wls-prep
     version: master
     name: staylorx.wlsprep
 ----
