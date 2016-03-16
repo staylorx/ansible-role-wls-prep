@@ -27,6 +27,9 @@ package_list:
   - 'ksh'
   - 'make'
   - 'sysstat'
+  - libXtst
+  - libXii
+  - xauth
 
 kernel_params:
    kernel.shmmax: 2147483648
