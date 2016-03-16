@@ -8,7 +8,7 @@
 
 #Default oracle user 
 oracle_user_name: oracle
-oracle_group_name: dba
+oracle_group_name: oinstall
 
 #Time-honoured list of packages to support RDBMS, WLS, FMW, etc.
 package_list:
