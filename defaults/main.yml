@@ -28,7 +28,7 @@ package_list:
   - 'make'
   - 'sysstat'
   - libXtst
-  - libXii
+  - libXi
   - xauth
 
 kernel_params:

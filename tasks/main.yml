@@ -2,8 +2,11 @@
 
 # ==> Configure Linux
 
+- name: Update 
+  yum: name="*" state=latest
+
 - name: Install required libraries
-  yum: name="{{ item }}" state=present
+  yum: name="{{ item }}" state=latest
   with_items: package_list
 
 - name: copy and install libstdc++.33 the hardway
