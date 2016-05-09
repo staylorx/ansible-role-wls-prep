@@ -30,6 +30,7 @@ package_list:
   - libXtst
   - libXi
   - xauth
+  - xclock
 
 kernel_params:
    kernel.shmmax: 2147483648
