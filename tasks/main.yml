@@ -7,7 +7,7 @@
 
 - name: Install required libraries
   yum: name="{{ item }}" state=latest
-  with_items: package_list
+  with_items: "{{ package_list }}"
 
 - name: copy and install libstdc++.33 the hardway
   copy: src=lib/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm dest=/tmp/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
@@ -33,7 +33,7 @@
 
 - name: Change kernel parameters
   sysctl: name="{{ item.key }}" value="{{ item.value }}" state=present
-  with_dict: kernel_params
+  with_dict: "{{ kernel_params }}"
 
 - name: Create groups
   group: name={{ oracle_group_name }} state=present
