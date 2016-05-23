@@ -41,17 +41,22 @@
 - name: Create user
   user: name={{ oracle_user_name }} group={{ oracle_group_name }} state=present
 
-- name: Add soft limit number of open files
-  lineinfile: dest=/etc/security/limits.conf line='{{ oracle_user_name }} soft  nofile  {{ soft_no_file }}' state=present
-
-- name: Add hard limit for number of open files
-  lineinfile: dest=/etc/security/limits.conf line='{{ oracle_user_name }} hard  nofile  {{ hard_no_file }}' state=present
-
-- name: Add soft limit for number of processes
-  lineinfile: dest=/etc/security/limits.conf line='{{ oracle_user_name }} soft  nproc   {{ soft_nproc }}' state=present
-
-- name: Add hard limit for number of processes
-  lineinfile: dest=/etc/security/limits.conf line='{{ oracle_user_name }} hard  nproc   {{ hard_nproc }}' state=present
-
+- name: set PAM limits
+  pam_limits:
+    domain:     "{{ item.domain }}"
+    value:      "{{ item.value }}"
+    limit_type: "{{ item.limit_type }}"
+    limit_item: "{{ item.limit_item }}"
+  with_items:
+    - { domain: '*',      limit_type: 'soft', limit_item: 'nofile',  value: 2048 }
+    - { domain: '*',      limit_type: 'hard', limit_item: 'nofile',  value: 8192 }
+    - { domain: 'oracle', limit_type: 'soft', limit_item: 'nofile',  value: 65536 }
+    - { domain: 'oracle', limit_type: 'hard', limit_item: 'nofile',  value: 65536 }
+    - { domain: 'oracle', limit_type: 'soft', limit_item: 'nproc',   value: 2048 }
+    - { domain: 'oracle', limit_type: 'hard', limit_item: 'nproc',   value: 16384 }
+    - { domain: 'oracle', limit_type: 'soft', limit_item: 'memlock', value: 1048576 }
+    - { domain: 'oracle', limit_type: 'hard', limit_item: 'memlock', value: 1048576 }
+    - { domain: 'oracle', limit_type: 'soft', limit_item: 'stack',   value: 10240 }
+    
 - name: Create a shell profile with file and process limits for oracle user
   template: src=limits.sh.j2 dest=/etc/profile.d/limits.sh owner=root mode=0644
