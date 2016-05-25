@@ -7,8 +7,8 @@
 #
 
 #Default oracle user 
-oracle_user_name: oracle
-oracle_group_name: oinstall 
+oracle_user: oracle
+oracle_group: oinstall 
 
 #Time-honoured list of packages to support RDBMS, WLS, FMW, etc.
 package_list:
@@ -31,6 +31,7 @@ package_list:
   - libXi
   - xauth
   - xclock
+  - unzip
 
 kernel_params:
    kernel.shmmax: 2147483648
@@ -47,3 +48,7 @@ kernel_params:
    net.ipv4.tcp_keepalive_intvl: 60
    net.ipv4.tcp_keepalive_probes: 10
 
+soft_no_file: 4096
+hard_no_file: 65536
+soft_nproc: 2047
+hard_nproc: 16384
