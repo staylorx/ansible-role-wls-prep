@@ -6,8 +6,6 @@ Setup O/S configuration to support an installation of WLS and Oracle FMW.
 
 Linux, RHEL or CentOS 7 preferred but 6 supported.
 
-## Role Variables
-
 ## Dependencies
 
 None.
@@ -17,7 +15,7 @@ None.
 ----
   - src: https://github.com/staylorx/ansible-role-wls-prep
     version: master
-    name: staylorx.wlsprep
+    name: staylorx.wls-prep
 ----
 
 Install with
@@ -29,17 +27,9 @@ Install with
 ----
   - hosts: servers
     roles:
-    - { role: staylorx.wlsprep }
+    - { role: staylorx.wls-prep }
 ----
 
 ## License
 
-## Author Information
-
-## Extra
-
-Standing on the back of giants thing here. I learned lots from the following folks and their code:
-
- - https://github.com/cvezalis
- - https://github.com/biemond
- - https://github.com/geerlingguy (last but not least!)
+MIT
