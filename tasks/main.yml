@@ -36,10 +36,14 @@
   with_dict: "{{ kernel_params }}"
 
 - name: Create groups
-  group: name={{ oracle_group }} state=present
+  group: name="{{ item }}" state=present
+  with_items:
+    - "{{ oracle_group }}"
+    - "oper"
+    - "dba"
 
 - name: Create user
-  user: name={{ oracle_user }} group={{ oracle_group }} state=present
+  user: name={{ oracle_user }} group={{ oracle_group }} groups=oper,dba state=present
 
 - name: set PAM limits
   pam_limits:
