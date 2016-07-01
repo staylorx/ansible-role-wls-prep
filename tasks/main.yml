@@ -9,9 +9,9 @@
   yum: name="{{ item }}" state=latest
   with_items: "{{ package_list }}"
 
-- name: copy and install libstdc++.33 the hardway
-  copy: src=lib/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm dest=/tmp/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
-- yum: name=/tmp/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm state=present
+#- name: copy and install libstdc++.33 the hardway
+#  copy: src=lib/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm dest=/tmp/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm
+#- yum: name=/tmp/compat-libstdc++-33-3.2.3-72.el7.x86_64.rpm state=present
 
 - name: Check SELinux status
   shell: selinuxenabled && echo enabled || echo disabled
