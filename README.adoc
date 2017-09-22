@@ -28,11 +28,12 @@ Install with
   - hosts: servers
     vars:
       kernel_change: yes
+      pam_limits_change: yes
     roles:
     - { role: staylorx.wls-prep }
 ----
 
-Set 'kernel_change' to no for use in containers.
+Set 'kernel_change' and 'pam_limits_change' to no for use in containers.
 
 ## License
 
