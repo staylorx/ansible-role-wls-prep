@@ -33,6 +33,7 @@ package_list:
   - xclock
   - unzip
 
+kernel_change: yes
 kernel_params:
    kernel.shmmax: 2147483648
    kernel.shmall: 524288

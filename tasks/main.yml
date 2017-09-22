@@ -30,6 +30,7 @@
 - name: Change kernel parameters
   sysctl: name="{{ item.key }}" value="{{ item.value }}" state=present
   with_dict: "{{ kernel_params }}"
+  when: kernel_change
 
 - name: Create groups
   group: name="{{ item }}" state=present
