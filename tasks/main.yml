@@ -1,10 +1,6 @@
 # Tasks for wlsprep role.
 
 # ==> Configure Linux
-
-- name: Update 
-  yum: name="*" state=latest
-
 - name: Install required libraries
   yum: name="{{ item }}" state=latest
   with_items: "{{ package_list }}"
