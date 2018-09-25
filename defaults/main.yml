@@ -32,6 +32,7 @@ package_list:
   - xauth
   - xclock
   - unzip
+  - psmisc
 
 kernel_change: yes
 kernel_params:
